@@ -10,21 +10,15 @@ namespace Emara.CodingTest.Tests
         [TestMethod]
         public void CalculateMaxSum_Test1()
         {
-            //    1
-            //   8 9
-            //  1 5 9
-            // 4 5 2 3
-
-            // Prepare
-            //BinaryTree inputTree = SampleData.FillTreeNodesWithStaticData_Sample1();
-            int[][] triangle = new int[][] {  new int[] {1, 0, 0,0},
-                      new int[] {8, 9, 0,0},
-                      new int[] {1, 5, 9,0},
-                      new int[] {4, 5, 2 , 3}
+            // Setup
+            int[][] data = new int[][] {  new int[] {1},
+                                          new int[] {8, 9},
+                                          new int[] {1, 5, 9},
+                                          new int[] {4, 5, 2, 3}
             };
 
             // Act
-            var maxSum = Algorithm.CalculateMaxSum(triangle);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
 
             // Assert
             Assert.AreEqual(16, maxSum);
@@ -33,11 +27,15 @@ namespace Emara.CodingTest.Tests
         [TestMethod]
         public void CalculateMaxSum_Test2()
         {
-            // Prepare
-            BinaryTree inputTree = SampleData.FillTreeNodesWithStaticData_Sample2();
+            // Setup
+            int[][] data = new int[][] {  new int[] {1},
+                                          new int[] {8, 6},
+                                          new int[] {1, 5, 9},
+                                          new int[] {4, 5, 2, 4}
+            };
 
             // Act
-            var maxSum = Algorithm.CalculateMaxSum(inputTree);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
 
             // Assert
             Assert.AreEqual(20, maxSum);
@@ -46,11 +44,11 @@ namespace Emara.CodingTest.Tests
         [TestMethod]
         public void CalculateMaxSum_Test3_Big()
         {
-            // Prepare
-            var inputData = SampleData.GetSampleData();
+            // Setup
+            var data = SampleDataHelper.GetDataFromFile(@"..\..\SampleData.txt");
 
             // Act
-            var maxSum = Algorithm.CalculateMaxSum(inputData);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
 
             // Assert
             Assert.AreEqual(8186, maxSum);
