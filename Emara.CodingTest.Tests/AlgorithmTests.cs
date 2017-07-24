@@ -10,14 +10,24 @@ namespace Emara.CodingTest.Tests
         [TestMethod]
         public void CalculateMaxSum_Test1()
         {
+            //    1
+            //   8 9
+            //  1 5 9
+            // 4 5 2 3
+
             // Prepare
-            BinaryTree inputTree = SampleData.FillTreeNodesWithStaticData_Sample1();
+            //BinaryTree inputTree = SampleData.FillTreeNodesWithStaticData_Sample1();
+            int[][] triangle = new int[][] {  new int[] {1, 0, 0,0},
+                      new int[] {8, 9, 0,0},
+                      new int[] {1, 5, 9,0},
+                      new int[] {4, 5, 2 , 3}
+            };
 
             // Act
-            var maxSum = Algorithm.CalculateMaxSum(inputTree);
+            var maxSum = Algorithm.CalculateMaxSum(triangle);
 
             // Assert
-            Assert.AreEqual(maxSum, 16);
+            Assert.AreEqual(16, maxSum);
         }
 
         [TestMethod]
@@ -30,7 +40,20 @@ namespace Emara.CodingTest.Tests
             var maxSum = Algorithm.CalculateMaxSum(inputTree);
 
             // Assert
-            Assert.AreEqual(maxSum, 20);
+            Assert.AreEqual(20, maxSum);
+        }
+
+        [TestMethod]
+        public void CalculateMaxSum_Test3_Big()
+        {
+            // Prepare
+            var inputData = SampleData.GetSampleData();
+
+            // Act
+            var maxSum = Algorithm.CalculateMaxSum(inputData);
+
+            // Assert
+            Assert.AreEqual(8186, maxSum);
         }
     }
 }
