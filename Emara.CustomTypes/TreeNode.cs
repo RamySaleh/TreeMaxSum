@@ -6,17 +6,25 @@ using System.Threading.Tasks;
 
 namespace Emara.CustomTypes
 {
-    public class TreeNode<T>
+    public class TreeNode
     {
-        public T Value { get; set; }
+        public int Value { get; set; }
 
-        public TreeNode<T> RightNode { get; set; }
+        public TreeNode RightNode { get; set; }
 
-        public TreeNode<T> LeftNode { get; set; }
+        public TreeNode LeftNode { get; set; }
 
-        public TreeNode(T value)
+        public bool IsEven
+        {
+            get
+            {
+                return Value % 2 == 0;
+            }
+        }
+
+        public TreeNode(int value)
         {
             Value = value;
-        }      
+        }
     }
 }
