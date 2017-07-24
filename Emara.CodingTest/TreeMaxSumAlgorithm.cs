@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Emara.CodingTest.Helpers;
+//using Emara.CodingTest.Helpers;
 
 namespace Emara.CodingTest
 {
@@ -18,29 +18,29 @@ namespace Emara.CodingTest
         public static int CalculateMaxSum(BinaryTree tree)
         {
             var max = 0;
-            if (tree.Root.HasValue)
+            if (tree.Root != null)
             {
-                max = CalculateTreeMax(tree, 0, 0, 0, tree.Root.Value.IsEven(), 0);
+                max = CalculateTreeMax(tree.Root, 0, tree.Root.IsEven, 0);
             }
 
             return max;
         }
 
-        private static int CalculateTreeMax(BinaryTree tree, int i, int j, int currentMax, bool isPrevNodeEven, int max)
+        private static int CalculateTreeMax(TreeNode treeNode, int currentMax, bool isPrevNodeEven, int max)
         {
             // Add the current node value to sum
-            currentMax += tree.GetValue(i, j).Value;
+            currentMax += treeNode.Value;
 
             // Go left if available
-            if (IsLeftPathAvailable(tree, i, j, isPrevNodeEven))
+            if (treeNode.LeftNode != null && treeNode.LeftNode.IsEven != isPrevNodeEven)
             {
-                max = CalculateTreeMax(tree, i + 1, j, currentMax, tree.LeftNode(i, j).Value.IsEven(), max);
+                max = CalculateTreeMax(treeNode.LeftNode, currentMax, treeNode.LeftNode.IsEven, max);
             }
 
             // Go right if available
-            if (IsRightPathAvailable(tree, i, j, isPrevNodeEven))
+            if (treeNode.RightNode != null && treeNode.RightNode.IsEven != isPrevNodeEven)
             {
-                max = CalculateTreeMax(tree, i + 1, j + 1, currentMax, tree.RightNode(i, j).Value.IsEven(), max);
+                max = CalculateTreeMax(treeNode.RightNode, currentMax, treeNode.RightNode.IsEven, max);
             }
 
             // Find the max sum (if the current path sum > max sum then update the max sum)
@@ -50,16 +50,6 @@ namespace Emara.CodingTest
             }
 
             return max;
-        }
-
-        private static bool IsRightPathAvailable(BinaryTree tree, int i, int j, bool isPrevNodeEven)
-        {
-            return tree.RightNode(i, j).HasValue && tree.RightNode(i, j).Value.IsEven() != isPrevNodeEven;
-        }
-
-        private static bool IsLeftPathAvailable(BinaryTree tree, int i, int j, bool isPrevNodeEven)
-        {
-            return tree.LeftNode(i, j).HasValue && tree.LeftNode(i, j).Value.IsEven() != isPrevNodeEven;
         }
     }
 }

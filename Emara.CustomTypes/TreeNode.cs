@@ -8,11 +8,50 @@ namespace Emara.CustomTypes
 {
     public class TreeNode
     {
-        public int Value { get; set; }
+        private int i;
 
-        public TreeNode RightNode { get; set; }
+        private int j;
 
-        public TreeNode LeftNode { get; set; }
+        private int[][] data;
+
+        public TreeNode(int[][] data, int i, int j)
+        {
+            this.data = data;
+            this.i = i;
+            this.j = j;
+        }
+
+        public int Value
+        {
+            get
+            {
+                return data[i][j];
+            }
+        }
+
+        public TreeNode RightNode
+        {
+            get
+            {
+                if (i + 1 < data.Length && j + 1 < data[i + 1].Length)
+                {
+                    return new TreeNode(data, i + 1, j + 1);
+                }
+                return null;
+            }
+        }
+
+        public TreeNode LeftNode
+        {
+            get
+            {
+                if (i + 1 < data.Length && j < data[i + 1].Length)
+                {
+                    return new TreeNode(data, i + 1, j);
+                }
+                return null;
+            }
+        }
 
         public bool IsEven
         {
@@ -20,11 +59,6 @@ namespace Emara.CustomTypes
             {
                 return Value % 2 == 0;
             }
-        }
-
-        public TreeNode(int value)
-        {
-            Value = value;
-        }
+        }       
     }
 }
