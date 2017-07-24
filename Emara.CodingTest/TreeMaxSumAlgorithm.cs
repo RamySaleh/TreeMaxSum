@@ -10,36 +10,34 @@ namespace Emara.CodingTest
 {
     public class TreeMaxSumAlgorithm
     {
-        public static int CalculateMaxSum(int[][] data)
+        public static int CalculateMaxSum(BinaryTree tree)
         {
             var max = 0;
-            if (data.Length > 0 && data[0].Length > 0)
+            if (tree.Root.HasValue)
             {
-                max = CalculateTreeMax(data, 0, 0, 0, data[0][0].IsEven(), 0);
+                max = CalculateTreeMax(tree, 0, 0, 0, tree.Root.Value.IsEven(), 0);
             }
 
             return max;
         }
 
-        private static int CalculateTreeMax(int[][] data, int i, int j, int currentMax, bool isPrevEven, int max)
+        private static int CalculateTreeMax(BinaryTree tree, int i, int j, int currentMax, bool isPrevEven, int max)
         {
-            currentMax += data[i][j];
+            currentMax += tree.GetValue(i, j).Value;
 
-            if (i + 1 < data.Length)
+            if (tree.LeftNode(i, j).HasValue)
             {
-                var leftNode = data[i + 1][j];
-                if (leftNode.IsEven() != isPrevEven)
+                if (tree.LeftNode(i, j).Value.IsEven() != isPrevEven)
                 {
-                    max = CalculateTreeMax(data, i + 1, j, currentMax, leftNode.IsEven(), max);
+                    max = CalculateTreeMax(tree, i + 1, j, currentMax, tree.LeftNode(i, j).Value.IsEven(), max);
                 }
             }
-            
-            if (i + 1 < data.Length && j + 1 < data[i+1].Length)
+
+            if (tree.RightNode(i, j).HasValue)
             {
-                var rightNode = data[i + 1][j + 1];
-                if (rightNode.IsEven() != isPrevEven)
+                if (tree.RightNode(i, j).Value.IsEven() != isPrevEven)
                 {
-                    max = CalculateTreeMax(data, i + 1, j + 1, currentMax, rightNode.IsEven(), max);
+                    max = CalculateTreeMax(tree, i + 1, j + 1, currentMax, tree.RightNode(i, j).Value.IsEven(), max);
                 }
             }
 

@@ -8,56 +8,46 @@ namespace Emara.CustomTypes
 {
     public class BinaryTree
     {
-        private List<TreeNode> _leafs;
-        public TreeNode Root { get; set; }
+        private int[][] _data;
 
-        public BinaryTree()
+        public int? Root
         {
-            _leafs = new List<TreeNode>();
+            get
+            {
+                if (_data.Length > 0 && _data[0].Length > 0)
+                {
+                    return _data[0][0];
+                }
+                return null;
+            }
         }
 
-        //    1
-        //   8 9
-        //  1 5 9
-        // 4 5 2 3
-        public void AddNode(int item)
+        public BinaryTree(int[][] data)
         {
-            if (Root == null)
-            {
-                Root = new TreeNode(item);
-                _leafs.Clear();
-                _leafs.Add(Root);
-            }
-            else
-            {
-                var added = false;
-                var completedNodes = new List<TreeNode>();
-           
-                for (int i = 0; i < _leafs.Count(); i++)
-                {
-                    var leaf = _leafs[i];
-                    if (leaf.LeftNode == null)
-                    {
-                        leaf.LeftNode = new TreeNode(item);
-                        _leafs.Add(leaf.LeftNode);
-                        added = true;
-                        break;
-                    }
-                    else if (leaf.RightNode == null)
-                    {
-                        added = true;
-                        leaf.RightNode = new TreeNode(item);
-                        _leafs.Add(leaf.RightNode);
-                        _leafs.Remove(leaf);
-                        break;
-                    }                                  
-                }               
-            }
-        }        
+            _data = data;
+        }
 
-        public void AddRow(int[] row)
+        public int? GetValue(int i, int j)
         {
+            return _data[i][j];
+        }
 
+        public int? LeftNode(int i, int j)
+        {
+            if (i + 1 < _data.Length && j < _data[i + 1].Length)
+            {
+                return _data[i + 1][j];
+            }
+            return null;
+        }
+
+        public int? RightNode(int i, int j)
+        {
+            if (i + 1 < _data.Length && j + 1 < _data[i + 1].Length)
+            {
+                return _data[i + 1][j + 1];
+            }
+            return null;
         }
     }
 }

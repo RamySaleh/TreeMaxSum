@@ -18,7 +18,7 @@ namespace Emara.CodingTest.Tests
             };
 
             // Act
-            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(new BinaryTree(data));
 
             // Assert
             Assert.AreEqual(16, maxSum);
@@ -35,7 +35,7 @@ namespace Emara.CodingTest.Tests
             };
 
             // Act
-            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(new BinaryTree(data));
 
             // Assert
             Assert.AreEqual(20, maxSum);
@@ -48,7 +48,7 @@ namespace Emara.CodingTest.Tests
             var data = SampleDataHelper.GetDataFromFile(@"..\..\SampleData.txt");
 
             // Act
-            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(data);
+            var maxSum = TreeMaxSumAlgorithm.CalculateMaxSum(new BinaryTree(data));
 
             // Assert
             Assert.AreEqual(8186, maxSum);
