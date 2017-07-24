@@ -16,10 +16,6 @@ namespace Emara.CodingTest
             return max;
         }
 
-        //    1
-        //   8 9
-        //  1 5 9
-        // 4 5 2 3
         private static int CalculateTreeMax(TreeNode root, int currentMax, bool isPrevEven, int max)
         {
             currentMax += root.Value;

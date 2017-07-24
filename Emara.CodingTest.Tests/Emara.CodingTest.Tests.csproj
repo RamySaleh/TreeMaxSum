@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AlgorithmTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emara.CodingTest\Emara.CodingTest.csproj">
