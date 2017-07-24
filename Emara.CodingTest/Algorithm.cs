@@ -9,36 +9,37 @@ namespace Emara.CodingTest
 {
     public class Algorithm
     {
-        static int _max;
-
         public static int CalculateMaxSum(BinaryTree tree)
         {
-            CalculateTreeMax(tree.Root, 0, tree.Root.IsEven);
+            var max = CalculateTreeMax(tree.Root, 0, tree.Root.IsEven, 0);
 
-            return _max;
+            return max;
         }
 
         //    1
         //   8 9
         //  1 5 9
         // 4 5 2 3
-        private static void CalculateTreeMax(TreeNode root, int currentMax, bool isPrevEven)
+        private static int CalculateTreeMax(TreeNode root, int currentMax, bool isPrevEven, int max)
         {
             currentMax += root.Value;
 
             if (root.LeftNode != null && root.LeftNode.IsEven != isPrevEven)
             {
-                CalculateTreeMax(root.LeftNode, currentMax, root.LeftNode.IsEven);
+                max = CalculateTreeMax(root.LeftNode, currentMax, root.LeftNode.IsEven, max);
             }
+
             if (root.RightNode != null && root.RightNode.IsEven != isPrevEven)
             {
-                CalculateTreeMax(root.RightNode, currentMax, root.RightNode.IsEven);
+                max = CalculateTreeMax(root.RightNode, currentMax, root.RightNode.IsEven, max);
             }
-            
-            if (currentMax > _max)
+
+            if (currentMax > max)
             {
-                _max = currentMax;
+                max = currentMax;
             }
+
+            return max;
         }
     }
 }
