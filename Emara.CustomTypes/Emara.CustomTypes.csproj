@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C4BED42-537F-4F28-A540-00F83840999E}</ProjectGuid>
+    <ProjectGuid>{8728064D-295A-4DD4-8F36-CF505FA19EED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Emara.CodingTest</RootNamespace>
-    <AssemblyName>Emara.CodingTest</AssemblyName>
+    <RootNamespace>Emara.CustomTypes</RootNamespace>
+    <AssemblyName>Emara.CustomTypes</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithm.cs" />
+    <Compile Include="BinaryTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Emara.CustomTypes\Emara.CustomTypes.csproj">
-      <Project>{8728064d-295a-4dd4-8f36-cf505fa19eed}</Project>
-      <Name>Emara.CustomTypes</Name>
-    </ProjectReference>
+    <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
